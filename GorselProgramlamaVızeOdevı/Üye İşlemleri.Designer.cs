@@ -44,8 +44,11 @@
             UyeEkle = new Button();
             Guncelleme = new Button();
             UyeSıl = new Button();
-            dataGridView1 = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            kullanıcıTablosu = new DataGridView();
+            uyedosyayakaydet = new Button();
+            button1 = new Button();
+            uyedosyadanoku = new Button();
+            ((System.ComponentModel.ISupportInitialize)kullanıcıTablosu).BeginInit();
             SuspendLayout();
             // 
             // KullanıcıAd
@@ -57,6 +60,7 @@
             KullanıcıAd.Size = new Size(92, 20);
             KullanıcıAd.TabIndex = 0;
             KullanıcıAd.Text = "Kullanıcı Adı";
+            KullanıcıAd.Click += KullanıcıAd_Click;
             // 
             // KullanıcıSoyad
             // 
@@ -67,6 +71,7 @@
             KullanıcıSoyad.Size = new Size(110, 20);
             KullanıcıSoyad.TabIndex = 1;
             KullanıcıSoyad.Text = "Kullanıcı Soyad";
+            KullanıcıSoyad.Click += KullanıcıSoyad_Click;
             // 
             // Cınsıyet
             // 
@@ -149,6 +154,7 @@
             textBox6.Name = "textBox6";
             textBox6.Size = new Size(182, 27);
             textBox6.TabIndex = 12;
+            textBox6.TextChanged += textBox6_TextChanged;
             // 
             // Kadın
             // 
@@ -178,17 +184,18 @@
             // 
             UyeEkle.BackColor = Color.Pink;
             UyeEkle.Cursor = Cursors.Help;
-            UyeEkle.Location = new Point(42, 387);
+            UyeEkle.Location = new Point(26, 333);
             UyeEkle.Name = "UyeEkle";
             UyeEkle.Size = new Size(94, 29);
             UyeEkle.TabIndex = 15;
             UyeEkle.Text = "Üye Ekle";
             UyeEkle.UseVisualStyleBackColor = false;
+            UyeEkle.Click += UyeEkle_Click;
             // 
             // Guncelleme
             // 
             Guncelleme.BackColor = Color.Pink;
-            Guncelleme.Location = new Point(183, 387);
+            Guncelleme.Location = new Point(151, 333);
             Guncelleme.Name = "Guncelleme";
             Guncelleme.Size = new Size(103, 29);
             Guncelleme.TabIndex = 16;
@@ -199,22 +206,57 @@
             // UyeSıl
             // 
             UyeSıl.BackColor = Color.Pink;
-            UyeSıl.Location = new Point(335, 387);
+            UyeSıl.Location = new Point(273, 333);
             UyeSıl.Name = "UyeSıl";
             UyeSıl.Size = new Size(94, 29);
             UyeSıl.TabIndex = 17;
             UyeSıl.Text = "Üye Sil";
             UyeSıl.UseVisualStyleBackColor = false;
             // 
-            // dataGridView1
+            // kullanıcıTablosu
             // 
-            dataGridView1.BackgroundColor = Color.White;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(373, 22);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(398, 340);
-            dataGridView1.TabIndex = 18;
+            kullanıcıTablosu.BackgroundColor = Color.White;
+            kullanıcıTablosu.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            kullanıcıTablosu.Location = new Point(373, 22);
+            kullanıcıTablosu.Name = "kullanıcıTablosu";
+            kullanıcıTablosu.RowHeadersWidth = 51;
+            kullanıcıTablosu.Size = new Size(398, 340);
+            kullanıcıTablosu.TabIndex = 18;
+            // 
+            // uyedosyayakaydet
+            // 
+            uyedosyayakaydet.BackColor = Color.Pink;
+            uyedosyayakaydet.Cursor = Cursors.Help;
+            uyedosyayakaydet.Location = new Point(26, 392);
+            uyedosyayakaydet.Name = "uyedosyayakaydet";
+            uyedosyayakaydet.Size = new Size(193, 29);
+            uyedosyayakaydet.TabIndex = 15;
+            uyedosyayakaydet.Text = "Dosyaya Kaydet";
+            uyedosyayakaydet.UseVisualStyleBackColor = false;
+            uyedosyayakaydet.Click += UyeEkle_Click;
+            // 
+            // button1
+            // 
+            button1.BackColor = Color.Pink;
+            button1.Cursor = Cursors.Help;
+            button1.Location = new Point(61, 448);
+            button1.Name = "button1";
+            button1.Size = new Size(193, 29);
+            button1.TabIndex = 15;
+            button1.Text = "Dosyaya Kaydet";
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += UyeEkle_Click;
+            // 
+            // uyedosyadanoku
+            // 
+            uyedosyadanoku.BackColor = Color.Pink;
+            uyedosyadanoku.Location = new Point(258, 392);
+            uyedosyadanoku.Name = "uyedosyadanoku";
+            uyedosyadanoku.Size = new Size(166, 29);
+            uyedosyadanoku.TabIndex = 16;
+            uyedosyadanoku.Text = "Dosyadan Oku";
+            uyedosyadanoku.UseVisualStyleBackColor = false;
+            uyedosyadanoku.Click += button2_Click;
             // 
             // UyeIslemleri1
             // 
@@ -222,9 +264,12 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.BurlyWood;
             ClientSize = new Size(800, 450);
-            Controls.Add(dataGridView1);
+            Controls.Add(kullanıcıTablosu);
             Controls.Add(UyeSıl);
+            Controls.Add(uyedosyadanoku);
             Controls.Add(Guncelleme);
+            Controls.Add(button1);
+            Controls.Add(uyedosyayakaydet);
             Controls.Add(UyeEkle);
             Controls.Add(Erkek);
             Controls.Add(Kadın);
@@ -241,7 +286,8 @@
             Controls.Add(KullanıcıAd);
             Name = "UyeIslemleri1";
             Text = "Üye İşlemleri";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            Load += UyeIslemleri1_Load;
+            ((System.ComponentModel.ISupportInitialize)kullanıcıTablosu).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -265,5 +311,10 @@
         private Button Guncelleme;
         private Button UyeSıl;
         private DataGridView dataGridView1;
+        private DataGridView kullanıcıTablosu;
+        private Button button1;
+        private Button uyedosyayakaydet;
+        private Button button2;
+        private Button uyedosyadanoku;
     }
 }

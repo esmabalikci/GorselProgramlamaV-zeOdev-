@@ -29,20 +29,22 @@
         private void InitializeComponent()
         {
             KıtapAd = new Label();
-            textBox1 = new TextBox();
+            kitapAditxt = new TextBox();
             Ekle1 = new Button();
             Guncelle1 = new Button();
             Sıl1 = new Button();
             Yazar = new Label();
-            textBox4 = new TextBox();
-            dataGridView1 = new DataGridView();
-            BarkodNo = new Label();
+            kitapyazaritxt = new TextBox();
+            KitaplarTablosu = new DataGridView();
+            barkodnotxt = new Label();
             YayınEvı = new Label();
             TeslımTarıhı = new Label();
             textBox2 = new TextBox();
-            textBox3 = new TextBox();
+            yayınevitxt = new TextBox();
             dateTimePicker1 = new DateTimePicker();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            btnDosyaKaydet = new Button();
+            dosyadanOkubtn = new Button();
+            ((System.ComponentModel.ISupportInitialize)KitaplarTablosu).BeginInit();
             SuspendLayout();
             // 
             // KıtapAd
@@ -55,12 +57,13 @@
             KıtapAd.TabIndex = 0;
             KıtapAd.Text = "Kitap Adı:";
             // 
-            // textBox1
+            // kitapAditxt
             // 
-            textBox1.Location = new Point(128, 24);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(250, 27);
-            textBox1.TabIndex = 3;
+            kitapAditxt.Location = new Point(128, 24);
+            kitapAditxt.Name = "kitapAditxt";
+            kitapAditxt.Size = new Size(250, 27);
+            kitapAditxt.TabIndex = 3;
+            kitapAditxt.TextChanged += textBox1_TextChanged;
             // 
             // Ekle1
             // 
@@ -103,32 +106,33 @@
             Yazar.TabIndex = 9;
             Yazar.Text = "Yazar:";
             // 
-            // textBox4
+            // kitapyazaritxt
             // 
-            textBox4.Location = new Point(128, 73);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(250, 27);
-            textBox4.TabIndex = 10;
+            kitapyazaritxt.Location = new Point(128, 73);
+            kitapyazaritxt.Name = "kitapyazaritxt";
+            kitapyazaritxt.Size = new Size(250, 27);
+            kitapyazaritxt.TabIndex = 10;
             // 
-            // dataGridView1
+            // KitaplarTablosu
             // 
-            dataGridView1.BackgroundColor = Color.White;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(450, 12);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(338, 363);
-            dataGridView1.TabIndex = 11;
+            KitaplarTablosu.BackgroundColor = Color.White;
+            KitaplarTablosu.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            KitaplarTablosu.Location = new Point(450, 12);
+            KitaplarTablosu.Name = "KitaplarTablosu";
+            KitaplarTablosu.RowHeadersWidth = 51;
+            KitaplarTablosu.Size = new Size(338, 363);
+            KitaplarTablosu.TabIndex = 11;
             // 
-            // BarkodNo
+            // barkodnotxt
             // 
-            BarkodNo.AutoSize = true;
-            BarkodNo.BackColor = Color.Moccasin;
-            BarkodNo.Location = new Point(20, 125);
-            BarkodNo.Name = "BarkodNo";
-            BarkodNo.Size = new Size(83, 20);
-            BarkodNo.TabIndex = 12;
-            BarkodNo.Text = "Barkod No:";
+            barkodnotxt.AutoSize = true;
+            barkodnotxt.BackColor = Color.Moccasin;
+            barkodnotxt.Location = new Point(20, 125);
+            barkodnotxt.Name = "barkodnotxt";
+            barkodnotxt.Size = new Size(83, 20);
+            barkodnotxt.TabIndex = 12;
+            barkodnotxt.Text = "Barkod No:";
+            barkodnotxt.Click += BarkodNo_Click;
             // 
             // YayınEvı
             // 
@@ -157,12 +161,13 @@
             textBox2.Size = new Size(250, 27);
             textBox2.TabIndex = 15;
             // 
-            // textBox3
+            // yayınevitxt
             // 
-            textBox3.Location = new Point(128, 171);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(250, 27);
-            textBox3.TabIndex = 16;
+            yayınevitxt.Location = new Point(128, 171);
+            yayınevitxt.Name = "yayınevitxt";
+            yayınevitxt.Size = new Size(250, 27);
+            yayınevitxt.TabIndex = 16;
+            yayınevitxt.TextChanged += yayınevitxt_TextChanged;
             // 
             // dateTimePicker1
             // 
@@ -171,30 +176,53 @@
             dateTimePicker1.Size = new Size(250, 27);
             dateTimePicker1.TabIndex = 17;
             // 
+            // btnDosyaKaydet
+            // 
+            btnDosyaKaydet.BackColor = Color.Pink;
+            btnDosyaKaydet.Location = new Point(20, 376);
+            btnDosyaKaydet.Name = "btnDosyaKaydet";
+            btnDosyaKaydet.Size = new Size(148, 29);
+            btnDosyaKaydet.TabIndex = 18;
+            btnDosyaKaydet.Text = "Dosyaya kaydet";
+            btnDosyaKaydet.UseVisualStyleBackColor = false;
+            btnDosyaKaydet.Click += btnDosyaKaydet_Click;
+            // 
+            // dosyadanOkubtn
+            // 
+            dosyadanOkubtn.BackColor = Color.Pink;
+            dosyadanOkubtn.Location = new Point(199, 378);
+            dosyadanOkubtn.Name = "dosyadanOkubtn";
+            dosyadanOkubtn.Size = new Size(126, 29);
+            dosyadanOkubtn.TabIndex = 19;
+            dosyadanOkubtn.Text = "Dosyadan Oku";
+            dosyadanOkubtn.UseVisualStyleBackColor = false;
+            dosyadanOkubtn.Click += dosyadanOkubtn_Click;
+            // 
             // Kitap_İşlemleri
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.BurlyWood;
             ClientSize = new Size(800, 450);
+            Controls.Add(dosyadanOkubtn);
+            Controls.Add(btnDosyaKaydet);
             Controls.Add(dateTimePicker1);
-            Controls.Add(textBox3);
+            Controls.Add(yayınevitxt);
             Controls.Add(textBox2);
             Controls.Add(TeslımTarıhı);
             Controls.Add(YayınEvı);
-            Controls.Add(BarkodNo);
-            Controls.Add(dataGridView1);
-            Controls.Add(textBox4);
+            Controls.Add(barkodnotxt);
+            Controls.Add(KitaplarTablosu);
+            Controls.Add(kitapyazaritxt);
             Controls.Add(Yazar);
             Controls.Add(Sıl1);
             Controls.Add(Guncelle1);
             Controls.Add(Ekle1);
-            Controls.Add(textBox1);
+            Controls.Add(kitapAditxt);
             Controls.Add(KıtapAd);
             Name = "Kitap_İşlemleri";
             Text = "Kitap_İşlemleri";
-            Load += Kitap_İşlemleri_Load;
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)KitaplarTablosu).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -202,24 +230,25 @@
         #endregion
 
         private Label KıtapAd;
-        private Label BarkodNo;
-        private TextBox textBox1;
+        private Label barkodnotxt;
+        private TextBox kitapAditxt;
         private TextBox textBox2;
-        private TextBox textBox3;
+        private TextBox yayınevitxt;
         private Button OduncAl;
         private Button SureyıUzat;
         private Button GerıVer;
         private Label Yazar;
-        private TextBox textBox4;
+        private TextBox kitapyazaritxt;
         private Label TeslımTarıhı;
         private Label Yayınevı;
         private DateTimePicker dateTimePicker1;
         private Button Ekle1;
         private Button Guncelle1;
         private Button Sıl1;
-        private DataGridView dataGridView1;
+        private DataGridView KitaplarTablosu;
         
         private Label YayınEvı;
-        
+        private Button btnDosyaKaydet;
+        private Button dosyadanOkubtn;
     }
 }
