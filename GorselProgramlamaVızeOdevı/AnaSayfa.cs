@@ -40,5 +40,10 @@ namespace GorselProgramlamaVızeOdevı
             UyeIslemleri1 form = new UyeIslemleri1();
             form.Show();
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

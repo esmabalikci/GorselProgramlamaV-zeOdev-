@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Json.Net;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Newtonsoft.Json;
 
 namespace GorselProgramlamaVızeOdevı
 {
@@ -27,7 +29,7 @@ namespace GorselProgramlamaVızeOdevı
             dtKitap.Columns.Add("Barkod No");
             dtKitap.Columns.Add("Yayınevi");
             dtKitap.Columns.Add("Teslim Tarihi");
-            
+
 
             KitaplarTablosu.DataSource = dtKitap;
         }
@@ -36,34 +38,31 @@ namespace GorselProgramlamaVızeOdevı
 
         private void button1_Click(object sender, EventArgs e)
         {
+
+
+
+            if (string.IsNullOrEmpty(kitapAditxt.Text) || string.IsNullOrEmpty(kitapyazaritxt.Text) || string.IsNullOrEmpty(barkodno.Text) || string.IsNullOrEmpty(yayınevitxt.Text) || string.IsNullOrEmpty(dateTimePicker1.Text))
+            {
+                MessageBox.Show("Lütfen tüm bilgileri giriniz!");
+                return;
+            }
+
+
             kitap kitp = new kitap();
             kitp.Ad = kitapAditxt.Text;
             kitp.Yazar = kitapyazaritxt.Text;
             kitp.BarkodNo = barkodnotxt.Text;
             kitp.Yayınevi = yayınevitxt.Text;
             kitp.TeslimTarihi = dateTimePicker1.Text;
-
             kitap.kitaplar.Add(kitp);
 
-
+            MessageBox.Show("Kitap kaydı yapıldı");
 
         }
-
         private void button1_Click_1(object sender, EventArgs e)
         {
-
+            this.Close();
         }
-
-        private void BarkodNo_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnDosyaKaydet_Click(object sender, EventArgs e)
         {
             string yazilacak = JsonNet.Serialize(kitap.kitaplar);
@@ -94,9 +93,43 @@ namespace GorselProgramlamaVızeOdevı
             }
         }
 
-        private void yayınevitxt_TextChanged(object sender, EventArgs e)
+        private void Guncelle1_Click(object sender, EventArgs e)
         {
+            if (!string.IsNullOrEmpty(kitapAditxt.Text) && !string.IsNullOrEmpty(kitapyazaritxt.Text) && !string.IsNullOrEmpty(barkodno.Text) && !string.IsNullOrEmpty(yayınevitxt.Text) && !string.IsNullOrEmpty(dateTimePicker1.Text))
+            {
+                kitap kitap = new kitap()
+                {
+                    Ad = KıtapAd.Text,
+                    Yazar = kitapyazaritxt.Text,
+                    BarkodNo = barkodno.Text,
+                    Yayınevi = yayınevitxt.Text,
+                    TeslimTarihi = dateTimePicker1.Text,
 
+                };
+
+                kitap.Add(kitap);
+
+
+
+
+                MessageBox.Show("Güncelleme işlemi başarıyla tamamlandı!");
+                Temizle();
+                Listele();
+            }
+            else
+            {
+                MessageBox.Show("Lütfen tüm bilgileri giriniz!");
+            }
+        }
+
+        private void Temizle()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Listele()
+        {
+            throw new NotImplementedException();
         }
     }
 }

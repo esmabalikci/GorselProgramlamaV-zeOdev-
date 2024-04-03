@@ -13,6 +13,7 @@ using Newtonsoft.Json;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 using Kitap;
 using Json.Net;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace GorselProgramlamaVızeOdevı
 {
@@ -35,8 +36,7 @@ namespace GorselProgramlamaVızeOdevı
 
             kullanıcıTablosu.DataSource = dtUyeler;
         }
-
-        private void label5_Click(object sender, EventArgs e)
+        private void UyeEkle_Click(object sender, EventArgs e)
         {
             kullanıcı kullanıcı = new kullanıcı();
             kullanıcı.KullanıcıAdı = KullanıcıAd.Text;
@@ -49,21 +49,62 @@ namespace GorselProgramlamaVızeOdevı
 
 
             kullanıcı.Uyeler.Add(kullanıcı);
-            
+
+            MessageBox.Show("Kayıt işlemi başarıyla tamamlandı!");
+            Temizle();
+            Listele();
 
         }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void Temizle()
         {
-
+            textBox1.Clear();
+            textBox2.Clear();
+            textBox3.Clear();
+            textBox4.Clear();
+            textBox5.Clear();
         }
 
-        private void textBox4_TextChanged(object sender, EventArgs e)
+        private void UyeSıl_Click(object sender, EventArgs e)
         {
+            if (UyeSıl.SelectedIndex != -1)
+            {
+                Uyeler.RemoveAt(UyeSıl.SelectedIndex);
 
+
+                SaveFileDialog dialog = new SaveFileDialog();
+                dialog.Filter = "JSon Dosyası|*.json";
+                if (dialog.ShowDialog() == DialogResult.OK)
+
+                    MessageBox.Show("Silme işlemi başarıyla tamamlandı!");
+                Listele();
+            }
+            else
+            {
+                MessageBox.Show("Lütfen bir üye seçiniz!");
+            }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Listele()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void dosyayakaydetuye_Click(object sender, EventArgs e)
+        {
+            string yazilacak = JsonNet.Serialize(kullanıcı.Uyeler);
+
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.Filter = "JSon Dosyası|*.json";
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+
+                string dosyaYolu = dialog.FileName;
+                File.WriteAllText(dosyaYolu, yazilacak, Encoding.UTF8);
+
+            }
+        }
+
+        private void Dosyadanokuuye_Click(object sender, EventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.Filter = "JSon Dosyasý|*.json";
@@ -78,48 +119,32 @@ namespace GorselProgramlamaVızeOdevı
             }
         }
 
-        private void UyeIslemleri1_Load(object sender, EventArgs e)
+        private void Guncelleme_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void KullanıcıAd_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox6_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void UyeEkle_Click(object sender, EventArgs e)
-        {
-            if ((string.IsNullOrEmpty(textBox6.Text))) || string.IsNullOrEmpty(textBox5.Text) || string.IsNullOrEmpty(textBox4.Text) || string.IsNullOrEmpty(textBox3.Text) || string.IsNullOrEmpty(textBox2.Text) || string.IsNullOrEmpty(textBox6.Text);
-            if (Erkek == null)
+            if (listbox.SelectedIndex != -1)
             {
-                //    MessageBox.Show("hoşgeldiniz Hanımefendi");
+                kullanıcı Uye = Uyeler[listbox.SelectedIndex];
 
+                textBox6.Text = Uye.KullanıcıAdı;
+                textBox5.Text = Uye.Kullanıcısoyad;
+                textBox1.Text = Uye.cinsiyet;
+                textBox4.Text = Uye.TC;
+                textBox3.Text = Uye.TelNo;
+                textBox2.Text = Uye.Maıl;
+
+                Uyeler.RemoveAt(listbox.SelectedIndex);
+
+                SaveFileDialog dialog = new SaveFileDialog();
+                dialog.Filter = "JSon Dosyası|*.json";
+                if (dialog.ShowDialog() == DialogResult.OK)
+
+
+
+                    MessageBox.Show("Güncelleme işlemini geçtiniz.");
             }
-            else
-            {
-
-
-            }
-
-
-            MessageBox.Show("Lütfen kullanıcı bilgilerini giriniz. ");
-            return;
-
-        }
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
-        private void KullanıcıSoyad_Click(object sender, EventArgs e)
-        {
-
-        }
+       
     }
 }
+

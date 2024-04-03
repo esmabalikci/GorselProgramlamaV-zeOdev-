@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -68,32 +69,37 @@ namespace GorselProgramlamaVızeOdevı
             emt.KitapAdı = KıtapAd1.Text;
             emt.Yazar = Yazar1.Text;
             emt.Ceza = Ceza.Text;
-            
+
 
             emanet.emanetler.Add(emt);
+
+            MessageBox.Show("Emanet işlemi başarıyla gerçekleşti.");
         }
+
+       
+
+        private void TeslımEt_Click(object sender, EventArgs e)
+        {
+            
+            string KitapAdı = KıtapAd1.Text;
+            string Yazar = Yazar1.Text;
+            string Ceza = CezaBox.Text;
+
+
+            Remove(KitapAdı, Yazar, Ceza);
+
+            MessageBox.Show("Emanet işlemi başarıyla silindi!");
+
+        }
+        private void Remove(string kitapAdı, string yazar, string ceza)
+        {
+            throw new NotImplementedException();
+        } 
+        
     }
 
-    private void TeslımEt_Click(object sender, EventArgs e)
-        {
 
-            int degisken = Convert.ToInt32(CezaBox.Text);
-            if (degisken != 0)
-            {
-                MessageBox.Show("Cezanızı var ise ödemeden kitabı teslim edemezsiniz.", "DİKKAT",
-                                                                                         MessageBoxButtons.OK,
-                                                                                         MessageBoxIcon.Warning);
 
-            }
-            else
-            {
-                MessageBox.Show("Kitabınız Teslim edildi.");
-            }
-        }
 
-       private void textBox1_TextChanged(object sender, EventArgs e)
-        {
 
-        }
-    }
 }

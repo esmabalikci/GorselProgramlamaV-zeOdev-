@@ -27,5 +27,9 @@ namespace Kitap
           
         }
 
+        internal void Add(kitap kitap)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

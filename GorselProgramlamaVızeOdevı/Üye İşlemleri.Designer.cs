@@ -39,15 +39,14 @@
             textBox4 = new TextBox();
             textBox5 = new TextBox();
             textBox6 = new TextBox();
-            Kadın = new RadioButton();
-            Erkek = new RadioButton();
             UyeEkle = new Button();
-            Guncelleme = new Button();
+            listbox = new Button();
             UyeSıl = new Button();
             kullanıcıTablosu = new DataGridView();
-            uyedosyayakaydet = new Button();
             button1 = new Button();
-            uyedosyadanoku = new Button();
+            dosyayakaydetuye = new Button();
+            Dosyadanokuuye = new Button();
+            textBox1 = new TextBox();
             ((System.ComponentModel.ISupportInitialize)kullanıcıTablosu).BeginInit();
             SuspendLayout();
             // 
@@ -60,7 +59,6 @@
             KullanıcıAd.Size = new Size(92, 20);
             KullanıcıAd.TabIndex = 0;
             KullanıcıAd.Text = "Kullanıcı Adı";
-            KullanıcıAd.Click += KullanıcıAd_Click;
             // 
             // KullanıcıSoyad
             // 
@@ -71,7 +69,6 @@
             KullanıcıSoyad.Size = new Size(110, 20);
             KullanıcıSoyad.TabIndex = 1;
             KullanıcıSoyad.Text = "Kullanıcı Soyad";
-            KullanıcıSoyad.Click += KullanıcıSoyad_Click;
             // 
             // Cınsıyet
             // 
@@ -102,7 +99,6 @@
             TelNo.Size = new Size(51, 20);
             TelNo.TabIndex = 4;
             TelNo.Text = "Tel.No";
-            TelNo.Click += label5_Click;
             // 
             // Maıl
             // 
@@ -137,7 +133,6 @@
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(182, 27);
             textBox4.TabIndex = 10;
-            textBox4.TextChanged += textBox4_TextChanged;
             // 
             // textBox5
             // 
@@ -154,31 +149,7 @@
             textBox6.Name = "textBox6";
             textBox6.Size = new Size(182, 27);
             textBox6.TabIndex = 12;
-            textBox6.TextChanged += textBox6_TextChanged;
-            // 
-            // Kadın
-            // 
-            Kadın.AutoSize = true;
-            Kadın.BackColor = Color.White;
-            Kadın.Location = new Point(151, 120);
-            Kadın.Name = "Kadın";
-            Kadın.Size = new Size(68, 24);
-            Kadın.TabIndex = 13;
-            Kadın.TabStop = true;
-            Kadın.Text = "Kadın";
-            Kadın.UseVisualStyleBackColor = false;
-            // 
-            // Erkek
-            // 
-            Erkek.AutoSize = true;
-            Erkek.BackColor = Color.White;
-            Erkek.Location = new Point(268, 118);
-            Erkek.Name = "Erkek";
-            Erkek.Size = new Size(65, 24);
-            Erkek.TabIndex = 14;
-            Erkek.TabStop = true;
-            Erkek.Text = "Erkek";
-            Erkek.UseVisualStyleBackColor = false;
+            
             // 
             // UyeEkle
             // 
@@ -188,20 +159,20 @@
             UyeEkle.Name = "UyeEkle";
             UyeEkle.Size = new Size(94, 29);
             UyeEkle.TabIndex = 15;
-            UyeEkle.Text = "Üye Ekle";
+            UyeEkle.Text = "Ekle";
             UyeEkle.UseVisualStyleBackColor = false;
             UyeEkle.Click += UyeEkle_Click;
             // 
-            // Guncelleme
+            // listbox
             // 
-            Guncelleme.BackColor = Color.Pink;
-            Guncelleme.Location = new Point(151, 333);
-            Guncelleme.Name = "Guncelleme";
-            Guncelleme.Size = new Size(103, 29);
-            Guncelleme.TabIndex = 16;
-            Guncelleme.Text = "Güncelle";
-            Guncelleme.UseVisualStyleBackColor = false;
-            Guncelleme.Click += button2_Click;
+            listbox.BackColor = Color.Pink;
+            listbox.Location = new Point(151, 333);
+            listbox.Name = "listbox";
+            listbox.Size = new Size(103, 29);
+            listbox.TabIndex = 16;
+            listbox.Text = "Güncelle";
+            listbox.UseVisualStyleBackColor = false;
+            listbox.Click += Guncelleme_Click;
             // 
             // UyeSıl
             // 
@@ -212,6 +183,7 @@
             UyeSıl.TabIndex = 17;
             UyeSıl.Text = "Üye Sil";
             UyeSıl.UseVisualStyleBackColor = false;
+            UyeSıl.Click += UyeSıl_Click;
             // 
             // kullanıcıTablosu
             // 
@@ -223,18 +195,6 @@
             kullanıcıTablosu.Size = new Size(398, 340);
             kullanıcıTablosu.TabIndex = 18;
             // 
-            // uyedosyayakaydet
-            // 
-            uyedosyayakaydet.BackColor = Color.Pink;
-            uyedosyayakaydet.Cursor = Cursors.Help;
-            uyedosyayakaydet.Location = new Point(26, 392);
-            uyedosyayakaydet.Name = "uyedosyayakaydet";
-            uyedosyayakaydet.Size = new Size(193, 29);
-            uyedosyayakaydet.TabIndex = 15;
-            uyedosyayakaydet.Text = "Dosyaya Kaydet";
-            uyedosyayakaydet.UseVisualStyleBackColor = false;
-            uyedosyayakaydet.Click += UyeEkle_Click;
-            // 
             // button1
             // 
             button1.BackColor = Color.Pink;
@@ -245,18 +205,35 @@
             button1.TabIndex = 15;
             button1.Text = "Dosyaya Kaydet";
             button1.UseVisualStyleBackColor = false;
-            button1.Click += UyeEkle_Click;
             // 
-            // uyedosyadanoku
+            // dosyayakaydetuye
             // 
-            uyedosyadanoku.BackColor = Color.Pink;
-            uyedosyadanoku.Location = new Point(258, 392);
-            uyedosyadanoku.Name = "uyedosyadanoku";
-            uyedosyadanoku.Size = new Size(166, 29);
-            uyedosyadanoku.TabIndex = 16;
-            uyedosyadanoku.Text = "Dosyadan Oku";
-            uyedosyadanoku.UseVisualStyleBackColor = false;
-            uyedosyadanoku.Click += button2_Click;
+            dosyayakaydetuye.BackColor = Color.Pink;
+            dosyayakaydetuye.Location = new Point(61, 381);
+            dosyayakaydetuye.Name = "dosyayakaydetuye";
+            dosyayakaydetuye.Size = new Size(128, 43);
+            dosyayakaydetuye.TabIndex = 19;
+            dosyayakaydetuye.Text = "Dosyaya Kaydet";
+            dosyayakaydetuye.UseVisualStyleBackColor = false;
+            dosyayakaydetuye.Click += dosyayakaydetuye_Click;
+            // 
+            // Dosyadanokuuye
+            // 
+            Dosyadanokuuye.BackColor = Color.Pink;
+            Dosyadanokuuye.Location = new Point(237, 381);
+            Dosyadanokuuye.Name = "Dosyadanokuuye";
+            Dosyadanokuuye.Size = new Size(118, 43);
+            Dosyadanokuuye.TabIndex = 20;
+            Dosyadanokuuye.Text = "Dosyadan Oku";
+            Dosyadanokuuye.UseVisualStyleBackColor = false;
+            Dosyadanokuuye.Click += Dosyadanokuuye_Click;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(151, 115);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(182, 27);
+            textBox1.TabIndex = 21;
             // 
             // UyeIslemleri1
             // 
@@ -264,15 +241,14 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.BurlyWood;
             ClientSize = new Size(800, 450);
+            Controls.Add(textBox1);
+            Controls.Add(Dosyadanokuuye);
+            Controls.Add(dosyayakaydetuye);
             Controls.Add(kullanıcıTablosu);
             Controls.Add(UyeSıl);
-            Controls.Add(uyedosyadanoku);
-            Controls.Add(Guncelleme);
+            Controls.Add(listbox);
             Controls.Add(button1);
-            Controls.Add(uyedosyayakaydet);
             Controls.Add(UyeEkle);
-            Controls.Add(Erkek);
-            Controls.Add(Kadın);
             Controls.Add(textBox6);
             Controls.Add(textBox5);
             Controls.Add(textBox4);
@@ -286,7 +262,6 @@
             Controls.Add(KullanıcıAd);
             Name = "UyeIslemleri1";
             Text = "Üye İşlemleri";
-            Load += UyeIslemleri1_Load;
             ((System.ComponentModel.ISupportInitialize)kullanıcıTablosu).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -305,16 +280,16 @@
         private TextBox textBox4;
         private TextBox textBox5;
         private TextBox textBox6;
-        private RadioButton Kadın;
-        private RadioButton Erkek;
         private Button UyeEkle;
-        private Button Guncelleme;
+        private Button listbox;
         private Button UyeSıl;
         private DataGridView dataGridView1;
         private DataGridView kullanıcıTablosu;
         private Button button1;
         private Button uyedosyayakaydet;
-        private Button button2;
         private Button uyedosyadanoku;
+        private Button dosyayakaydetuye;
+        private Button Dosyadanokuuye;
+        private TextBox textBox1;
     }
 }

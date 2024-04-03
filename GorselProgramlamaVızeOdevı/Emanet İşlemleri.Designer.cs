@@ -70,6 +70,7 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(250, 27);
             textBox1.TabIndex = 5;
+           
             // 
             // textBox2
             // 
@@ -81,9 +82,9 @@
             // OduncAl
             // 
             OduncAl.BackColor = Color.Pink;
-            OduncAl.Location = new Point(12, 250);
+            OduncAl.Location = new Point(12, 269);
             OduncAl.Name = "OduncAl";
-            OduncAl.Size = new Size(122, 47);
+            OduncAl.Size = new Size(121, 28);
             OduncAl.TabIndex = 10;
             OduncAl.Text = "Ödünç Al";
             OduncAl.UseVisualStyleBackColor = false;
@@ -92,9 +93,9 @@
             // SureyıUzat
             // 
             SureyıUzat.BackColor = Color.Pink;
-            SureyıUzat.Location = new Point(160, 250);
+            SureyıUzat.Location = new Point(150, 269);
             SureyıUzat.Name = "SureyıUzat";
-            SureyıUzat.Size = new Size(115, 47);
+            SureyıUzat.Size = new Size(127, 28);
             SureyıUzat.TabIndex = 11;
             SureyıUzat.Text = "Süreyi Uzat";
             SureyıUzat.UseVisualStyleBackColor = false;
@@ -102,12 +103,13 @@
             // TeslımEt
             // 
             TeslımEt.BackColor = Color.Pink;
-            TeslımEt.Location = new Point(293, 250);
+            TeslımEt.Location = new Point(293, 269);
             TeslımEt.Name = "TeslımEt";
-            TeslımEt.Size = new Size(121, 47);
+            TeslımEt.Size = new Size(127, 28);
             TeslımEt.TabIndex = 12;
             TeslımEt.Text = "Teslim Et";
             TeslımEt.UseVisualStyleBackColor = false;
+            TeslımEt.Click += TeslımEt_Click;
             // 
             // Ceza
             // 
@@ -118,6 +120,7 @@
             Ceza.Size = new Size(44, 20);
             Ceza.TabIndex = 13;
             Ceza.Text = "Ceza:";
+          
             // 
             // CezaBox
             // 
@@ -125,6 +128,7 @@
             CezaBox.Name = "CezaBox";
             CezaBox.Size = new Size(250, 27);
             CezaBox.TabIndex = 15;
+           
             // 
             // emanettablo
             // 

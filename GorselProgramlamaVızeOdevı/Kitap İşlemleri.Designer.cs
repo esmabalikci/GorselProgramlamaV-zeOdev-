@@ -39,7 +39,7 @@
             barkodnotxt = new Label();
             YayınEvı = new Label();
             TeslımTarıhı = new Label();
-            textBox2 = new TextBox();
+            barkodno = new TextBox();
             yayınevitxt = new TextBox();
             dateTimePicker1 = new DateTimePicker();
             btnDosyaKaydet = new Button();
@@ -63,14 +63,14 @@
             kitapAditxt.Name = "kitapAditxt";
             kitapAditxt.Size = new Size(250, 27);
             kitapAditxt.TabIndex = 3;
-            kitapAditxt.TextChanged += textBox1_TextChanged;
+         
             // 
             // Ekle1
             // 
             Ekle1.BackColor = Color.Pink;
-            Ekle1.Location = new Point(12, 311);
+            Ekle1.Location = new Point(20, 324);
             Ekle1.Name = "Ekle1";
-            Ekle1.Size = new Size(110, 41);
+            Ekle1.Size = new Size(101, 28);
             Ekle1.TabIndex = 6;
             Ekle1.Text = "Ekle";
             Ekle1.UseVisualStyleBackColor = false;
@@ -79,19 +79,20 @@
             // Guncelle1
             // 
             Guncelle1.BackColor = Color.Pink;
-            Guncelle1.Location = new Point(164, 311);
+            Guncelle1.Location = new Point(161, 324);
             Guncelle1.Name = "Guncelle1";
-            Guncelle1.Size = new Size(119, 41);
+            Guncelle1.Size = new Size(122, 28);
             Guncelle1.TabIndex = 7;
             Guncelle1.Text = "Güncelle";
             Guncelle1.UseVisualStyleBackColor = false;
+            Guncelle1.Click += Guncelle1_Click;
             // 
             // Sıl1
             // 
             Sıl1.BackColor = Color.Pink;
-            Sıl1.Location = new Point(310, 311);
+            Sıl1.Location = new Point(318, 324);
             Sıl1.Name = "Sıl1";
-            Sıl1.Size = new Size(121, 41);
+            Sıl1.Size = new Size(108, 28);
             Sıl1.TabIndex = 8;
             Sıl1.Text = "Sil";
             Sıl1.UseVisualStyleBackColor = false;
@@ -132,7 +133,6 @@
             barkodnotxt.Size = new Size(83, 20);
             barkodnotxt.TabIndex = 12;
             barkodnotxt.Text = "Barkod No:";
-            barkodnotxt.Click += BarkodNo_Click;
             // 
             // YayınEvı
             // 
@@ -154,12 +154,12 @@
             TeslımTarıhı.TabIndex = 14;
             TeslımTarıhı.Text = "Teslim Tarihi:";
             // 
-            // textBox2
+            // barkodno
             // 
-            textBox2.Location = new Point(128, 118);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(250, 27);
-            textBox2.TabIndex = 15;
+            barkodno.Location = new Point(128, 118);
+            barkodno.Name = "barkodno";
+            barkodno.Size = new Size(250, 27);
+            barkodno.TabIndex = 15;
             // 
             // yayınevitxt
             // 
@@ -167,7 +167,6 @@
             yayınevitxt.Name = "yayınevitxt";
             yayınevitxt.Size = new Size(250, 27);
             yayınevitxt.TabIndex = 16;
-            yayınevitxt.TextChanged += yayınevitxt_TextChanged;
             // 
             // dateTimePicker1
             // 
@@ -179,9 +178,9 @@
             // btnDosyaKaydet
             // 
             btnDosyaKaydet.BackColor = Color.Pink;
-            btnDosyaKaydet.Location = new Point(20, 376);
+            btnDosyaKaydet.Location = new Point(79, 376);
             btnDosyaKaydet.Name = "btnDosyaKaydet";
-            btnDosyaKaydet.Size = new Size(148, 29);
+            btnDosyaKaydet.Size = new Size(127, 51);
             btnDosyaKaydet.TabIndex = 18;
             btnDosyaKaydet.Text = "Dosyaya kaydet";
             btnDosyaKaydet.UseVisualStyleBackColor = false;
@@ -190,9 +189,9 @@
             // dosyadanOkubtn
             // 
             dosyadanOkubtn.BackColor = Color.Pink;
-            dosyadanOkubtn.Location = new Point(199, 378);
+            dosyadanOkubtn.Location = new Point(252, 376);
             dosyadanOkubtn.Name = "dosyadanOkubtn";
-            dosyadanOkubtn.Size = new Size(126, 29);
+            dosyadanOkubtn.Size = new Size(154, 51);
             dosyadanOkubtn.TabIndex = 19;
             dosyadanOkubtn.Text = "Dosyadan Oku";
             dosyadanOkubtn.UseVisualStyleBackColor = false;
@@ -208,7 +207,7 @@
             Controls.Add(btnDosyaKaydet);
             Controls.Add(dateTimePicker1);
             Controls.Add(yayınevitxt);
-            Controls.Add(textBox2);
+            Controls.Add(barkodno);
             Controls.Add(TeslımTarıhı);
             Controls.Add(YayınEvı);
             Controls.Add(barkodnotxt);
@@ -232,7 +231,7 @@
         private Label KıtapAd;
         private Label barkodnotxt;
         private TextBox kitapAditxt;
-        private TextBox textBox2;
+        private TextBox barkodno;
         private TextBox yayınevitxt;
         private Button OduncAl;
         private Button SureyıUzat;

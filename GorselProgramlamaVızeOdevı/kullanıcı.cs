@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Kitap;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -9,6 +10,8 @@ namespace Uyeler
 {
     public class kullanıcı
     {
+
+        public static List<kullanıcı> Uyeler = new List<kullanıcı>();
         public string KullanıcıAdı {  get; set; }   
         public string Kullanıcısoyad {  get; set; }
         public string cinsiyet {  get; set; }   
