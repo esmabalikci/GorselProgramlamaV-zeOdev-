@@ -63,7 +63,6 @@
             kitapAditxt.Name = "kitapAditxt";
             kitapAditxt.Size = new Size(250, 27);
             kitapAditxt.TabIndex = 3;
-         
             // 
             // Ekle1
             // 
@@ -123,6 +122,7 @@
             KitaplarTablosu.RowHeadersWidth = 51;
             KitaplarTablosu.Size = new Size(338, 363);
             KitaplarTablosu.TabIndex = 11;
+            KitaplarTablosu.CellContentClick += KitaplarTablosu_CellContentClick;
             // 
             // barkodnotxt
             // 

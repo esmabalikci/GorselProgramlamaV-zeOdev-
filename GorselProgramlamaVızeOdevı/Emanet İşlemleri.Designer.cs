@@ -70,7 +70,6 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(250, 27);
             textBox1.TabIndex = 5;
-           
             // 
             // textBox2
             // 
@@ -109,7 +108,6 @@
             TeslımEt.TabIndex = 12;
             TeslımEt.Text = "Teslim Et";
             TeslımEt.UseVisualStyleBackColor = false;
-            TeslımEt.Click += TeslımEt_Click;
             // 
             // Ceza
             // 
@@ -120,7 +118,6 @@
             Ceza.Size = new Size(44, 20);
             Ceza.TabIndex = 13;
             Ceza.Text = "Ceza:";
-          
             // 
             // CezaBox
             // 
@@ -128,7 +125,6 @@
             CezaBox.Name = "CezaBox";
             CezaBox.Size = new Size(250, 27);
             CezaBox.TabIndex = 15;
-           
             // 
             // emanettablo
             // 
@@ -139,6 +135,7 @@
             emanettablo.RowHeadersWidth = 51;
             emanettablo.Size = new Size(300, 286);
             emanettablo.TabIndex = 16;
+            emanettablo.CellContentClick += emanettablo_CellContentClick;
             // 
             // emanetdosyadanoku
             // 

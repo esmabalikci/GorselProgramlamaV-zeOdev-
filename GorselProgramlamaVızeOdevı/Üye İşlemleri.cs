@@ -15,16 +15,22 @@ using Kitap;
 using Json.Net;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
+using System.Data.SQLite;
+using System.Data.SqlClient;
+
+
 namespace GorselProgramlamaVızeOdevı
 {
     public partial class UyeIslemleri1 : Form
     {
+        SQLiteConnection baglanti; 
         DataTable dtUyeler;
         private List<kullanıcı> Uyeler;
 
         public UyeIslemleri1()
         {
             InitializeComponent();
+            string baglanti = "Data Source=kütüphaneuygulaması.db;Version=3";
             Uyeler = new List<kullanıcı>();
             dtUyeler = new DataTable();
             dtUyeler.Columns.Add("Kullanıcı adı");
@@ -35,26 +41,52 @@ namespace GorselProgramlamaVızeOdevı
             dtUyeler.Columns.Add("Mail ");
 
             kullanıcıTablosu.DataSource = dtUyeler;
+
+           
+            using (var baglan = new SqlConnection(baglanti)) 
+            {
+                try 
+                { 
+                    baglan.Open();
+                    MessageBox.Show("Veri Tabanına bağlantı başarılı bir şekilde sağlandı.");
+                
+                } 
+                catch (Exception hata)
+                {
+                    MessageBox.Show("Veri Tabanına bağlantı sağlanamadı.!\nHata Mesajı: "+hata.Message);
+
+
+
+                }
+            }
+
+
         }
         private void UyeEkle_Click(object sender, EventArgs e)
         {
-            kullanıcı kullanıcı = new kullanıcı();
-            kullanıcı.KullanıcıAdı = KullanıcıAd.Text;
-            kullanıcı.Kullanıcısoyad = KullanıcıSoyad.Text;
-            kullanıcı.cinsiyet = Cınsıyet.Text;
-            kullanıcı.TC = TC.Text;
-            kullanıcı.TelNo = TelNo.Text;
-            kullanıcı.Maıl = Maıl.Text;
+            SQLiteCommand komut = new SQLiteCommand();
+            komut.Connection = baglanti;
+            komut.CommandText = $"INSERT INTO kullanıcı (Kullanıcı Adı,Kullanıcı Soyadı ,Cinsiyet,TC,Tel No,Mail) VALUES(\"{KullanıcıAd.Text}\", \"{KullanıcıSoyad.Text}\", \"{Cınsıyet.Text}\", \"{TC.Text}\",\"{TelNo.Text}\",\"{Maıl.Text}\")";
 
 
+            int eklenen_sayisi = komut.ExecuteNonQuery();
+            if (eklenen_sayisi > 0)
+                TabloGuncelle();
 
-            kullanıcı.Uyeler.Add(kullanıcı);
-
-            MessageBox.Show("Kayıt işlemi başarıyla tamamlandı!");
-            Temizle();
-            Listele();
+            KullanıcıAd.Text = "";
+            KullanıcıSoyad.Text = "";
+            Cınsıyet.Text = "";
+            TC.Text = "";
+            TelNo.Text = "";
+            Maıl.Text = "";
 
         }
+
+        private void TabloGuncelle()
+        {
+            throw new NotImplementedException();
+        }
+
         private void Temizle()
         {
             textBox1.Clear();
@@ -133,18 +165,40 @@ namespace GorselProgramlamaVızeOdevı
                 textBox2.Text = Uye.Maıl;
 
                 Uyeler.RemoveAt(listbox.SelectedIndex);
-
-                SaveFileDialog dialog = new SaveFileDialog();
-                dialog.Filter = "JSon Dosyası|*.json";
-                if (dialog.ShowDialog() == DialogResult.OK)
-
-
-
-                    MessageBox.Show("Güncelleme işlemini geçtiniz.");
             }
+            else
+            {
+                MessageBox.Show("Lütfen bir üye seçiniz");
+            }
+
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.Filter = "JSon Dosyası|*.json";
+            if (dialog.ShowDialog() == DialogResult.OK)
+
+
+
+                MessageBox.Show("Güncelleme işlemini geçtiniz.");
         }
 
-       
+        private void kullanıcıTablosu_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                KullanıcıAd.Text = kullanıcıTablosu.SelectedRows[0].Cells[1].Value.ToString();
+                KullanıcıSoyad.Text = kullanıcıTablosu.SelectedRows[0].Cells[2].Value.ToString();
+                Cınsıyet.Text = kullanıcıTablosu.SelectedRows[0].Cells[3].Value.ToString();
+                TC.Text = kullanıcıTablosu.SelectedRows[0].Cells[4].Value.ToString();
+                TelNo.Text = kullanıcıTablosu.SelectedRows[0].Cells[5].Value.ToString();
+                Maıl.Text = kullanıcıTablosu.SelectedRows[0].Cells[6].Value.ToString();
+            }
+            catch (Exception)
+            {
+
+            }
+        }
     }
+
+
 }
+
 

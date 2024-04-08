@@ -12,16 +12,21 @@ using System.Windows.Forms;
 using Json.Net;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Newtonsoft.Json;
+using System.Data.SQLite;
+using Uyeler;
+using System.Data.SqlClient;
 
 namespace GorselProgramlamaVızeOdevı
 {
     public partial class Kitap_İşlemleri : Form
     {
+        SQLiteConnection baglanti;
         DataTable dtKitap;
         private List<kitap> Kitap;
         public Kitap_İşlemleri()
         {
             InitializeComponent();
+            string baglanti_metni = "Data Source=kitap.db;Version=3;";
             Kitap = new List<kitap>();
             dtKitap = new DataTable();
             dtKitap.Columns.Add("Kitap adı");
@@ -32,33 +37,53 @@ namespace GorselProgramlamaVızeOdevı
 
 
             KitaplarTablosu.DataSource = dtKitap;
+
+            using (var baglan = new SqlConnection(baglanti))
+            {
+                try
+                {
+                    baglan.Open();
+                    MessageBox.Show("Veri Tabanına bağlantı başarılı bir şekilde sağlandı.");
+
+                }
+                catch (Exception hata)
+                {
+                    MessageBox.Show("Veri Tabanına bağlantı sağlanamadı.!\nHata Mesajı: " + hata.Message);
+
+
+
+                }
+            }
         }
 
 
 
         private void button1_Click(object sender, EventArgs e)
         {
+            SQLiteCommand komut = new SQLiteCommand();
+            komut.Connection = baglanti;
+            komut.CommandText = $"INSERT INTO kitapişlemleri (Kullanıcı Adı,Kullanıcı Soyadı ,Cinsiyet,TC,Tel No,Mail) VALUES(\"{KıtapAd.Text}\", \"{Yazar.Text}\", \"{barkodnotxt.Text}\", \"{YayınEvı.Text}\",\"{TeslımTarıhı.Text}\")";
 
 
+            int eklenen_sayisi = komut.ExecuteNonQuery();
+            if (eklenen_sayisi > 0)
+                TabloGuncelle();
 
-            if (string.IsNullOrEmpty(kitapAditxt.Text) || string.IsNullOrEmpty(kitapyazaritxt.Text) || string.IsNullOrEmpty(barkodno.Text) || string.IsNullOrEmpty(yayınevitxt.Text) || string.IsNullOrEmpty(dateTimePicker1.Text))
-            {
-                MessageBox.Show("Lütfen tüm bilgileri giriniz!");
-                return;
-            }
-
-
-            kitap kitp = new kitap();
-            kitp.Ad = kitapAditxt.Text;
-            kitp.Yazar = kitapyazaritxt.Text;
-            kitp.BarkodNo = barkodnotxt.Text;
-            kitp.Yayınevi = yayınevitxt.Text;
-            kitp.TeslimTarihi = dateTimePicker1.Text;
-            kitap.kitaplar.Add(kitp);
+            KıtapAd.Text = "";
+            Yazar.Text = "";
+            barkodnotxt.Text = "";
+            YayınEvı.Text = "";
+            TeslımTarıhı.Text = "";
 
             MessageBox.Show("Kitap kaydı yapıldı");
 
         }
+
+        private void TabloGuncelle()
+        {
+            throw new NotImplementedException();
+        }
+
         private void button1_Click_1(object sender, EventArgs e)
         {
             this.Close();
@@ -130,6 +155,22 @@ namespace GorselProgramlamaVızeOdevı
         private void Listele()
         {
             throw new NotImplementedException();
+        }
+
+        private void KitaplarTablosu_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                KıtapAd.Text = KitaplarTablosu.SelectedRows[0].Cells[1].Value.ToString();
+                Yazar.Text = KitaplarTablosu.SelectedRows[0].Cells[2].Value.ToString();
+                barkodnotxt.Text = KitaplarTablosu.SelectedRows[0].Cells[3].Value.ToString();
+                Yayınevı.Text = KitaplarTablosu.SelectedRows[0].Cells[4].Value.ToString();
+                TeslımTarıhı.Text = KitaplarTablosu.SelectedRows[0].Cells[5].Value.ToString();
+            }
+            catch (Exception)
+            {
+
+            }
         }
     }
 }

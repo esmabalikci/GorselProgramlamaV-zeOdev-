@@ -149,7 +149,6 @@
             textBox6.Name = "textBox6";
             textBox6.Size = new Size(182, 27);
             textBox6.TabIndex = 12;
-            
             // 
             // UyeEkle
             // 
@@ -194,6 +193,7 @@
             kullanıcıTablosu.RowHeadersWidth = 51;
             kullanıcıTablosu.Size = new Size(398, 340);
             kullanıcıTablosu.TabIndex = 18;
+            kullanıcıTablosu.CellContentClick += kullanıcıTablosu_CellContentClick;
             // 
             // button1
             // 
