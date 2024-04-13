@@ -171,7 +171,7 @@
             listbox.TabIndex = 16;
             listbox.Text = "Güncelle";
             listbox.UseVisualStyleBackColor = false;
-            listbox.Click += Guncelleme_Click;
+           // listbox.Click += Guncelleme_Click;
             // 
             // UyeSıl
             // 
@@ -182,7 +182,7 @@
             UyeSıl.TabIndex = 17;
             UyeSıl.Text = "Üye Sil";
             UyeSıl.UseVisualStyleBackColor = false;
-            UyeSıl.Click += UyeSıl_Click;
+           // UyeSıl.Click += UyeSıl_Click;
             // 
             // kullanıcıTablosu
             // 
@@ -193,7 +193,7 @@
             kullanıcıTablosu.RowHeadersWidth = 51;
             kullanıcıTablosu.Size = new Size(398, 340);
             kullanıcıTablosu.TabIndex = 18;
-            kullanıcıTablosu.CellContentClick += kullanıcıTablosu_CellContentClick;
+           // kullanıcıTablosu.CellContentClick += kullanıcıTablosu_CellContentClick;
             // 
             // button1
             // 
@@ -215,7 +215,7 @@
             dosyayakaydetuye.TabIndex = 19;
             dosyayakaydetuye.Text = "Dosyaya Kaydet";
             dosyayakaydetuye.UseVisualStyleBackColor = false;
-            dosyayakaydetuye.Click += dosyayakaydetuye_Click;
+          //  dosyayakaydetuye.Click += dosyayakaydetuye_Click;
             // 
             // Dosyadanokuuye
             // 
@@ -226,7 +226,7 @@
             Dosyadanokuuye.TabIndex = 20;
             Dosyadanokuuye.Text = "Dosyadan Oku";
             Dosyadanokuuye.UseVisualStyleBackColor = false;
-            Dosyadanokuuye.Click += Dosyadanokuuye_Click;
+         //   Dosyadanokuuye.Click += Dosyadanokuuye_Click;
             // 
             // textBox1
             // 

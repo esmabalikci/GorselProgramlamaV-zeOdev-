@@ -14,6 +14,7 @@ using System.Windows.Forms;
 using System.Data.SQLite;
 using System.Data.SqlClient;
 using Uyeler;
+using System.Security.Cryptography.X509Certificates;
 
 namespace GorselProgramlamaVızeOdevı
 {
@@ -22,7 +23,8 @@ namespace GorselProgramlamaVızeOdevı
         SQLiteConnection baglantii;
         DataTable dtEmanet;
         private List<emanet> Emanet;
-       
+        private object Cells;
+
         public Emanet_İşlemleri()
         {
 
@@ -37,7 +39,7 @@ namespace GorselProgramlamaVızeOdevı
 
             emanettablo.DataSource = dtEmanet;
 
-           
+
             using (var baglan = new SqlConnection(baglantii))
             {
                 try
@@ -54,6 +56,27 @@ namespace GorselProgramlamaVızeOdevı
 
                 }
             }
+            private void Emanet_İşlemleri_FormClosing(object sender, FormClosingEventArgs e)
+            {
+                if (baglantii != null && baglantii.State == System.Data.ConnectionState.Open)
+                {
+                    try
+                    {
+                        baglantii.Close();
+                        MessageBox.Show("SQLite bağlantısı sonlandırıldı.");
+
+                    }
+                    catch (Exception hata)
+                    {
+                        MessageBox.Show("SQLite bağlantısı sonlandırılamadı.");
+
+                    }
+
+
+                }
+            }
+
+
 
 
 
@@ -125,23 +148,68 @@ namespace GorselProgramlamaVızeOdevı
 
         private void TabloGuncelle()
         {
-            throw new NotImplementedException();
+            SQLiteCommand komut = new SQLiteCommand();
+            komut.Connection = baglantii;
+            komut.CommandText = "SELECT * FROM Emanet_İşlemleri ";
+
+            DataTable emanet = new DataTable();
+            emanet.Columns.Add("Kitap Adı");
+            emanet.Columns.Add("Yazar");
+            emanet.Columns.Add("Ceza");
+
+            SQLiteDataReader okuyucu = komut.ExecuteReader();
+            while (okuyucu.Read())
+            {
+                emanet.Rows.Add(new object[] { okuyucu.GetInt32(0),
+                                               okuyucu.GetInt32(1),
+                                               okuyucu.IsDBNull(4) ? " " : okuyucu.GetInt32(2) });
+            }
+
+
+            emanettablo.DataSource = emanet;
+
+
         }
 
-        private void emanettablo_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void guncellebtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int ID = Convert.ToInt32(emanettablo.SelectedRows[0], Cells[0].Value);
+
+                SQLiteCommand komut = new SQLiteCommand();
+                komut.Connection = baglantii;
+                komut.CommandText = $"UPDATE emanet SET KıtapAd1=\"{textBox1.Text}\",Yazar1=\"{textBox2.Text}\",Ceza=\"{CezaBox.Text}\" WHERE ID = { ID }";
+
+                int eklenen_sayisi = komut.ExecuteNonQuery();
+                if (eklenen_sayisi > 0)
+                    TabloGuncelle();  
+
+
+            }
+            catch(Exception hata) 
+            {
+
+            }
+        }
+    }
+
+    private void emanettablo_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
                 KıtapAd1.Text = emanettablo.SelectedRows[0].Cells[1].Value.ToString();
                 Yazar1.Text = emanettablo.SelectedRows[0].Cells[2].Value.ToString();
                 CezaBox.Text = emanettablo.SelectedRows[0].Cells[3].Value.ToString();
-               
+
             }
             catch (Exception)
             {
 
             }
         }
+
+      
     }
 
 

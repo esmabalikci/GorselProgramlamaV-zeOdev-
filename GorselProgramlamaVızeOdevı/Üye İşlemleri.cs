@@ -17,6 +17,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 using System.Data.SQLite;
 using System.Data.SqlClient;
+using System.Drawing.Text;
 
 
 namespace GorselProgramlamaVızeOdevı
@@ -59,6 +60,23 @@ namespace GorselProgramlamaVızeOdevı
 
                 }
             }
+            private void UyeIslemleri1_Form1Closing(object sender, FormClosingEventArgs e) 
+            {
+                if (baglanti != null && baglanti.State ==  System.Data.ConnectionState.Open)
+                {
+                    try
+                    {
+                        baglanti.Close();
+                        MessageBox.Show("SQLite bağlantısı kuruldu.");
+
+                    }
+                    catch(Exception hata)
+                    {
+                        MessageBox.Show("SQLite bağlantısı sonlandırılırken hata oluştu.");
+
+                    }
+                }
+            }
 
 
         }
@@ -84,8 +102,34 @@ namespace GorselProgramlamaVızeOdevı
 
         private void TabloGuncelle()
         {
-            throw new NotImplementedException();
+            SQLiteCommand komut = new SQLiteCommand();
+            komut.Connection = baglanti;
+            komut.CommandText = "SELECT * FROM kullanıcı";
+
+
+
+            DataTable kullanıcı = new DataTable();
+            kullanıcı.Columns.Add("Kullanıcı Adı");
+            kullanıcı.Columns.Add("Kullanıcı Soyadı");
+            kullanıcı.Columns.Add("Cinsiyet");
+            kullanıcı.Columns.Add("T.C.");
+            kullanıcı.Columns.Add("Tel No");
+            kullanıcı.Columns.Add("Mail");
+
+            SQLiteDataReader okuyucu = komut.ExecuteReader();
+            while (okuyucu.Read())
+            {
+                kullanıcı.Rows.Add(new object[] { okuyucu.GetString(0),
+                                                  okuyucu.GetString(1),
+                                                  okuyucu.GetString(2),
+                                                  okuyucu.GetString(3),
+                                                  okuyucu.GetString(4),
+                                                  okuyucu.IsDBNull(5) ? "" : okuyucu.GetString(5)});
+            }
+
+            kullanıcıTablosu.DataSource = kullanıcı;
         }
+    }
 
         private void Temizle()
         {

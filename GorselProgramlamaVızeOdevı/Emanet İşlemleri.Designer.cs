@@ -40,6 +40,7 @@
             emanettablo = new DataGridView();
             emanetdosyadanoku = new Button();
             emanetdosyakaydet = new Button();
+            guncellebtn = new Button();
             ((System.ComponentModel.ISupportInitialize)CezaBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)emanettablo).BeginInit();
             SuspendLayout();
@@ -83,7 +84,7 @@
             OduncAl.BackColor = Color.Pink;
             OduncAl.Location = new Point(12, 269);
             OduncAl.Name = "OduncAl";
-            OduncAl.Size = new Size(121, 28);
+            OduncAl.Size = new Size(90, 28);
             OduncAl.TabIndex = 10;
             OduncAl.Text = "Ödünç Al";
             OduncAl.UseVisualStyleBackColor = false;
@@ -92,9 +93,9 @@
             // SureyıUzat
             // 
             SureyıUzat.BackColor = Color.Pink;
-            SureyıUzat.Location = new Point(150, 269);
+            SureyıUzat.Location = new Point(108, 269);
             SureyıUzat.Name = "SureyıUzat";
-            SureyıUzat.Size = new Size(127, 28);
+            SureyıUzat.Size = new Size(100, 28);
             SureyıUzat.TabIndex = 11;
             SureyıUzat.Text = "Süreyi Uzat";
             SureyıUzat.UseVisualStyleBackColor = false;
@@ -102,9 +103,9 @@
             // TeslımEt
             // 
             TeslımEt.BackColor = Color.Pink;
-            TeslımEt.Location = new Point(293, 269);
+            TeslımEt.Location = new Point(214, 269);
             TeslımEt.Name = "TeslımEt";
-            TeslımEt.Size = new Size(127, 28);
+            TeslımEt.Size = new Size(106, 28);
             TeslımEt.TabIndex = 12;
             TeslımEt.Text = "Teslim Et";
             TeslımEt.UseVisualStyleBackColor = false;
@@ -135,12 +136,11 @@
             emanettablo.RowHeadersWidth = 51;
             emanettablo.Size = new Size(300, 286);
             emanettablo.TabIndex = 16;
-            emanettablo.CellContentClick += emanettablo_CellContentClick;
             // 
             // emanetdosyadanoku
             // 
             emanetdosyadanoku.BackColor = Color.Pink;
-            emanetdosyadanoku.Location = new Point(241, 324);
+            emanetdosyadanoku.Location = new Point(247, 334);
             emanetdosyadanoku.Name = "emanetdosyadanoku";
             emanetdosyadanoku.Size = new Size(173, 47);
             emanetdosyadanoku.TabIndex = 10;
@@ -151,7 +151,7 @@
             // emanetdosyakaydet
             // 
             emanetdosyakaydet.BackColor = Color.Pink;
-            emanetdosyakaydet.Location = new Point(37, 324);
+            emanetdosyakaydet.Location = new Point(41, 334);
             emanetdosyakaydet.Name = "emanetdosyakaydet";
             emanetdosyakaydet.Size = new Size(167, 47);
             emanetdosyakaydet.TabIndex = 10;
@@ -159,12 +159,24 @@
             emanetdosyakaydet.UseVisualStyleBackColor = false;
             emanetdosyakaydet.Click += emanetdosyakaydet_Click;
             // 
+            // guncellebtn
+            // 
+            guncellebtn.BackColor = Color.Pink;
+            guncellebtn.Location = new Point(326, 268);
+            guncellebtn.Name = "guncellebtn";
+            guncellebtn.Size = new Size(94, 29);
+            guncellebtn.TabIndex = 17;
+            guncellebtn.Text = "Güncelle";
+            guncellebtn.UseVisualStyleBackColor = false;
+            guncellebtn.Click += guncellebtn_Click;
+            // 
             // Emanet_İşlemleri
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.BurlyWood;
             ClientSize = new Size(738, 393);
+            Controls.Add(guncellebtn);
             Controls.Add(emanettablo);
             Controls.Add(CezaBox);
             Controls.Add(Ceza);
@@ -199,5 +211,6 @@
         private DataGridView emanettablo;
         private Button emanetdosyadanoku;
         private Button emanetdosyakaydet;
+        private Button guncellebtn;
     }
 }
